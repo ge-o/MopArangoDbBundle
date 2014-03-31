@@ -13,9 +13,9 @@ class Factory
         $this->loggers[] = $logger;
     }
 
-    public function createConnection($name, $host, $port)
+    public function createConnection($name, $host, $port, $database, $AuthUser, $AuthPasswd)
     {
-        $options = array('host' => $host, 'port' => $port);
+        $options = array('host' => $host, 'port' => $port, 'database'=>$database, 'AuthUser'=>$AuthUser, 'AuthPasswd'=>$AuthPasswd);
         if (count($this->loggers)) {
             $loggers = $this->loggers;
             $trace = function($type, $data) use($name, $loggers) {
