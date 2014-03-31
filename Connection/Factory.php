@@ -16,6 +16,12 @@ class Factory
     public function createConnection($name, $host, $port, $database, $AuthUser, $AuthPasswd)
     {
         $options = array('host' => $host, 'port' => $port, 'database'=>$database, 'AuthUser'=>$AuthUser, 'AuthPasswd'=>$AuthPasswd);
+        if($AuthUser && $AuthPasswd)
+        {
+            $options['AuthUser'] = $AuthUser;
+            $options['AuthPasswd'] = $AuthPasswd;
+            $options['AuthType'] = 'Basic';
+        }
         if (count($this->loggers)) {
             $loggers = $this->loggers;
             $trace = function($type, $data) use($name, $loggers) {
